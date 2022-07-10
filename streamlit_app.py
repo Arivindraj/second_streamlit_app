@@ -16,8 +16,8 @@ st.set_page_config(
  )
 
 # Add header and a subheader
-    st.header("Knoema: Environment Data Atlas")
-    st.subheader("Powered by Snowpark for Python and Snowflake Data Marketplace | Made with Streamlit")
+st.header("Knoema: Environment Data Atlas")
+st.subheader("Powered by Snowpark for Python and Snowflake Data Marketplace | Made with Streamlit")
     
 
 
