@@ -15,17 +15,10 @@ st.set_page_config(
      }
  )
 
- 
-st.header("View Our Fruit List - Add Your Favorites!")
-# Snowflake related function
-def get_fruit_load_list():
-  with my_cnx.cursor() as my_cur:
-    my_cur.execute("select top 100 * from ENVIRONMENT_DATA_ATLAS ")
-    return my_cur.fetchall()
-  
-# Add a button to load the fruit
-if st.button("Get Fruit List"):
-  my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-  my_data_rows = get_fruit_load_list()
-  my_cnx.close()
-  st.dataframe(my_data_rows)
+# Add header and a subheader
+    st.header("Knoema: Environment Data Atlas")
+    st.subheader("Powered by Snowpark for Python and Snowflake Data Marketplace | Made with Streamlit")
+    
+
+
+     
