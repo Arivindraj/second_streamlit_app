@@ -21,11 +21,17 @@ st.set_page_config(
  )
 
 # Create Session object
-def create_session_object(): 
-    session = Session.builder.configs(**st.secrets["snowflake"]).create()
-    print(session.sql('select current_warehouse(), current_database(), current_schema()').collect())
-    return session
+def create_session_object():
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("select current_warehouse(), current_database(), current_schema()")
+    return my_cur.fetchall()
 
+# Add a button to load teh fruit
+if streamlit.button("Get Fruit List"):
+  my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+  my_data_rows = create_session_object()
+  my_cnx.close()
+  st.dataframe(my_data_rows)
 
 # Add header and a subheader
 st.header("Knoema: Environment Data Atlas")
