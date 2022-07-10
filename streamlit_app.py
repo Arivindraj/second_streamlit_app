@@ -27,7 +27,7 @@ def create_session_object():
     return my_cur.fetchall()
 
 # Add a button to load teh fruit
-if streamlit.button("Get Fruit List"):
+if st.button("Get Fruit List"):
   my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
   my_data_rows = create_session_object()
   my_cnx.close()
