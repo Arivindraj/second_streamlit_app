@@ -3,8 +3,8 @@ import pandas as pd
 import requests
 
 # Snowpark
-from snowflake.snowpark.session import Session
-from snowflake.snowpark.functions import avg, sum, col,lit
+#from snowflake.snowpark.session import Session
+#from snowflake.snowpark.functions import avg, sum, col,lit
 import snowflake.connector
 
 from urllib.error import URLError
