@@ -1,7 +1,12 @@
 import streamlit as st
 import pandas as pd
 import requests
+
+# Snowpark
+from snowflake.snowpark.session import Session
+from snowflake.snowpark.functions import avg, sum, col,lit
 import snowflake.connector
+
 from urllib.error import URLError
 
 st.set_page_config(
@@ -15,18 +20,13 @@ st.set_page_config(
      }
  )
 
+# Create Session object
+def create_session_object(): 
+    session = Session.builder.configs(**st.secrets["snowflake"]).create()
+    print(session.sql('select current_warehouse(), current_database(), current_schema()').collect())
+    return session
+
+
 # Add header and a subheader
 st.header("Knoema: Environment Data Atlas")
 st.subheader("Powered by Snowpark for Python and Snowflake Data Marketplace | Made with Streamlit")
-    
-def get_fruit_load_list():
-  with my_cnx.cursor() as my_cur:
-    my_cur.execute("select * from fruit_load_list")
-    return my_cur.fetchall()
-  
-# Add a button to load teh fruit
-if st.button("Get Fruit List"):
-  my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-  my_data_rows = get_fruit_load_list()
-  my_cnx.close()
-  st.dataframe(my_data_rows)
